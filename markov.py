@@ -43,11 +43,7 @@ def make_chains(text_string):
             
 
 
-    print chains
-
-    # your code goes here
-
-    # return chains
+    return chains
 
 
 def make_text(chains):
@@ -55,7 +51,14 @@ def make_text(chains):
 
     text = ""
 
-    # your code goes here
+    random_key = choice(chains.keys())
+    text = "{} {}".format(random_key[0], random_key[1])
+
+    random_value = chains[random_key]
+    random_value = choice(random_value)
+    new_key = (random_key[1],random_value)
+    print random_key, random_value, new_key
+
 
     return text
 
