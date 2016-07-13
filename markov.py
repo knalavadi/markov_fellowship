@@ -54,11 +54,11 @@ def make_text(chains):
     random_key = choice(chains.keys())
     text = "{} {}".format(random_key[0], random_key[1])
 
-    random_value = chains[random_key]
-    random_value = choice(random_value)
-    new_key = (random_key[1],random_value)
-    print random_key, random_value, new_key
-
+    while (random_key in chains.keys()):
+        random_value = chains[random_key]
+        random_value = choice(random_value)
+        text = text + " " + random_value
+        random_key = (random_key[1],random_value)
 
     return text
 
