@@ -13,7 +13,7 @@ def open_and_read_file(file_path):
     return contents
 
 
-def make_chains(text_string):
+def make_chains(text_string, n):
     """Takes input text as string; returns _dictionary_ of markov chains.
 
     A chain will be a key that consists of a tuple of (word1, word2)
@@ -30,10 +30,15 @@ def make_chains(text_string):
 
     word_list = text_string.split()
     for i in range(len(word_list) - 2):
-        word_list_key = (word_list[i], word_list[i+1])
+        # word_list_key = (word_list[i], word_list[i+(n-1), word_list[i+(n-2)])
+        for k in range(n):
+            word_list_key = []
+            word_list_key = word_list_key.append(word_list[k])
+        word_list_key = tuple(word_list_key)
+        # above works, below need to work for n-th case
         word_list_value = []
 
-        word_list_value.append(word_list[i + 2])
+        word_list_value.append(word_list[i + n])
 
         if word_list_key in chains:
             old_value = chains.get(word_list_key)
@@ -63,17 +68,17 @@ def make_text(chains):
     return text
 
 
-input_path = "green-eggs.txt"
+input_path = "strawberry_field.txt"
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
-print input_text
 
 # Get a Markov chain
-chains = make_chains(input_text)
+chains = make_chains(input_text, 3)
 
 
 # Produce random text
-random_text = make_text(chains)
+# random_text = make_text(chains)
+print chains
 
-print random_text
+# print random_text
